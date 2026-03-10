@@ -1,0 +1,265 @@
+/* ── Weekly Summary Panel ── */
+.week-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.25rem;
+}
+
+.week-nav-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  color: var(--color-text-muted);
+  transition: background var(--transition);
+}
+
+.week-nav-btn:hover { background: var(--color-surface-alt); }
+
+.week-label {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+/* ── Week Day List ── */
+.week-day-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 1.25rem;
+}
+
+.week-day-row {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 10px 12px;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.week-day-name {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  width: 32px;
+  flex-shrink: 0;
+  padding-top: 2px;
+}
+
+.week-day-entries { flex: 1; min-width: 0; }
+
+.week-entry-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.875rem;
+  padding: 1px 0;
+}
+
+.week-entry-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.week-entry-type {
+  font-weight: 600;
+  text-transform: capitalize;
+  flex-shrink: 0;
+}
+
+.week-entry-notes {
+  color: var(--color-text-muted);
+  font-size: 0.8125rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.week-day-empty {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+
+/* ── Stats Summary ── */
+.week-stats {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 1.25rem;
+}
+
+.stat-chip {
+  flex: 1;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 10px;
+  text-align: center;
+}
+
+.stat-count {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-accent);
+  line-height: 1;
+}
+
+.stat-label {
+  font-size: 0.7rem;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  margin-top: 2px;
+}
+
+/* ── Export Buttons ── */
+.export-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.btn-export {
+  flex: 1;
+  padding: 10px 8px;
+  border-radius: var(--radius-md);
+  border: 1.5px solid var(--color-accent);
+  background: var(--color-surface);
+  color: var(--color-accent);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  transition: all var(--transition);
+}
+
+.btn-export:hover {
+  background: var(--color-accent);
+  color: #fff;
+}
+
+.btn-export:active { transform: scale(0.97); }
+
+.btn-export.loading {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+/* ── Off-screen Export Card ── */
+#export-card {
+  position: fixed;
+  left: -9999px;
+  top: 0;
+  width: 1080px;
+  background: #1a2e1a;
+  color: #e8f5e8;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  overflow: hidden;
+}
+
+.export-card-inner {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 80px 72px;
+}
+
+.export-app-name {
+  font-size: 28px;
+  font-weight: 700;
+  color: #7ab87a;
+  letter-spacing: -0.5px;
+  margin-bottom: 8px;
+}
+
+.export-week-label {
+  font-size: 42px;
+  font-weight: 700;
+  color: #e8f5e8;
+  line-height: 1.1;
+  margin-bottom: 48px;
+}
+
+.export-day-list {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.export-day-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  padding-top: 18px;
+}
+
+.export-day-name {
+  font-size: 20px;
+  font-weight: 700;
+  color: #7ab87a;
+  width: 60px;
+  flex-shrink: 0;
+}
+
+.export-day-entries { flex: 1; }
+.export-entry-line {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 20px;
+  color: #e8f5e8;
+}
+
+.export-entry-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.export-entry-notes {
+  color: #7ab87a;
+  font-size: 18px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.export-day-rest {
+  font-size: 18px;
+  color: rgba(122,184,122,0.5);
+  font-style: italic;
+}
+
+/* ── Proportion Bar ── */
+.export-bar-section {
+  margin-top: 48px;
+}
+
+.export-bar-label {
+  font-size: 18px;
+  color: #7ab87a;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+.export-bar {
+  display: flex;
+  height: 16px;
+  border-radius: 8px;
+  overflow: hidden;
+  background: rgba(255,255,255,0.06);
+}
+
+.export-bar-segment { height: 100%; }

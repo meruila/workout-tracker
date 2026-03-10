@@ -1,0 +1,31 @@
+:root {
+  --green-0: #f0faf0;
+  --green-1: #a8d5a2;
+  --green-2: #5aaa5a;
+  --green-3: #2e7d32;
+  --green-4: #1b5e20;
+  --green-5: #0a2e0a;
+
+  --color-bg:           #f7fbf7;
+  --color-surface:      #ffffff;
+  --color-surface-alt:  #eef7ee;
+  --color-border:       #c8e6c9;
+  --color-text-primary: #1b2e1b;
+  --color-text-muted:   #5a7a5a;
+  --color-accent:       #2e7d32;
+  --color-walk:         #a8d5a2;
+  --color-run:          #1b5e20;
+  --color-workout:      #2e7d32;
+
+  /* Export card */
+  --export-bg:    #1a2e1a;
+  --export-text:  #e8f5e8;
+  --export-muted: #7ab87a;
+
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+  --shadow-md: 0 4px 16px rgba(0,0,0,0.12);
+  --transition: 0.18s ease;
+}
