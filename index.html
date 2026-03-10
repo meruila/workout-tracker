@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Activity Tracker</title>
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/calendar.css">
+  <link rel="stylesheet" href="css/form.css">
+  <link rel="stylesheet" href="css/export.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</head>
+<body>
+
+  <!-- ── App Header ── -->
+  <header class="app-header">
+    <div class="app-header-inner">
+      <span class="app-name">Activity Tracker</span>
+      <nav class="nav-tabs" role="tablist">
+        <button class="nav-tab" data-tab="calendar" role="tab" aria-selected="true">Calendar</button>
+        <button class="nav-tab" data-tab="weekly" role="tab" aria-selected="false">This Week</button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ── Main Content ── -->
+  <main class="main-content">
+
+    <!-- ── Calendar View ── -->
+    <div id="view-calendar" class="view active">
+      <div class="month-nav">
+        <button class="month-nav-btn" id="prev-month" aria-label="Previous month">&#8249;</button>
+        <span class="month-label" id="month-label"></span>
+        <button class="month-nav-btn" id="next-month" aria-label="Next month">&#8250;</button>
+      </div>
+
+      <div class="calendar-grid" role="grid">
+        <!-- Day headers (static) -->
+        <div class="day-header">Mon</div>
+        <div class="day-header">Tue</div>
+        <div class="day-header">Wed</div>
+        <div class="day-header">Thu</div>
+        <div class="day-header">Fri</div>
+        <div class="day-header">Sat</div>
+        <div class="day-header">Sun</div>
+      </div>
+      <!-- Day cells injected by JS -->
+      <div class="calendar-cells" id="calendar-grid" role="presentation"></div>
+    </div>
+
+    <!-- ── Weekly View ── -->
+    <div id="view-weekly" class="view">
+      <div class="week-nav">
+        <button class="week-nav-btn" id="prev-week" aria-label="Previous week">&#8249;</button>
+        <span class="week-label" id="week-label"></span>
+        <button class="week-nav-btn" id="next-week" aria-label="Next week">&#8250;</button>
+      </div>
+
+      <!-- Stats -->
+      <div class="week-stats">
+        <div class="stat-chip">
+          <div class="stat-count" id="stat-walk">0</div>
+          <div class="stat-label" style="color:var(--color-walk);filter:brightness(0.7);">Walks</div>
+        </div>
+        <div class="stat-chip">
+          <div class="stat-count" id="stat-run">0</div>
+          <div class="stat-label" style="color:var(--color-run);">Runs</div>
+        </div>
+        <div class="stat-chip">
+          <div class="stat-count" id="stat-workout">0</div>
+          <div class="stat-label" style="color:var(--color-workout);">Workouts</div>
+        </div>
+      </div>
+
+      <!-- Day list -->
+      <div class="week-day-list" id="week-day-list"></div>
+
+      <!-- Export -->
+      <div class="export-actions">
+        <button class="btn-export" data-ratio="9:16">Export 9:16</button>
+        <button class="btn-export" data-ratio="1:1">Export 1:1</button>
+        <button class="btn-export" data-ratio="3:4">Export 3:4</button>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ── FAB ── -->
+  <button class="fab" id="fab" aria-label="Add activity">+</button>
+
+  <!-- ── Overlay ── -->
+  <div class="overlay" id="modal-overlay"></div>
+
+  <!-- ── Add Activity Modal ── -->
+  <div class="modal" id="activity-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-header">
+      <span class="modal-title" id="modal-title">Log Activity</span>
+      <button class="modal-close" id="modal-close" aria-label="Close">&#10005;</button>
+    </div>
+
+    <!-- Type selector -->
+    <div class="type-selector">
+      <button class="type-btn selected" data-type="walk">
+        <span class="type-icon">&#x1F6B6;</span>
+        Walk
+      </button>
+      <button class="type-btn" data-type="run">
+        <span class="type-icon">&#x1F3C3;</span>
+        Run
+      </button>
+      <button class="type-btn" data-type="workout">
+        <span class="type-icon">&#x1F4AA;</span>
+        Workout
+      </button>
+    </div>
+
+    <!-- Date -->
+    <div class="form-group">
+      <label class="form-label" for="activity-date">Date</label>
+      <input class="form-input" type="date" id="activity-date">
+    </div>
+
+    <!-- Notes -->
+    <div class="form-group">
+      <label class="form-label" for="activity-notes">Notes <span style="font-weight:400;text-transform:none;">(optional)</span></label>
+      <textarea class="form-textarea" id="activity-notes" placeholder="e.g. Morning 5k, felt great…" rows="2"></textarea>
+    </div>
+
+    <div class="modal-actions">
+      <button class="btn btn-cancel" id="btn-cancel">Cancel</button>
+      <button class="btn btn-save" id="btn-save">Save</button>
+    </div>
+  </div>
+
+  <!-- ── Off-screen Export Card (html2canvas target) ── -->
+  <div id="export-card" aria-hidden="true"></div>
+
+  <script src="js/bundle.js" defer></script>
+</body>
+</html>
