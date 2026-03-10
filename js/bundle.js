@@ -392,9 +392,7 @@ function buildExportCard(year, weekNum, width, height) {
       ? `<div style="font-size:${fs.entry}px;color:rgba(122,184,122,0.4);font-style:italic;">Rest</div>`
       : dayEntries.map(e => {
           const notes = e.notes ? `<span style="color:${COLORS.muted};margin-left:8px;">— ${e.notes}</span>` : '';
-          return `<div style="display:flex;align-items:flex-start;gap:10px;font-size:${fs.entry}px;color:${COLORS.text};margin-bottom:4px;line-height:12px;">
-            <span style="width:12px;height:12px;border-radius:50%;background:${expDotColor(e.type)};flex-shrink:0;display:inline-block;"></span>
-            <div style="line-height:1.4;margin-top:-1px;"><span style="font-weight:600;text-transform:capitalize;">${e.type}</span>${notes}</div></div>`;
+          return `<div style="font-size:${fs.entry}px;color:${COLORS.text};margin-bottom:4px;line-height:1.4;"><span style="font-weight:600;text-transform:capitalize;">${e.type}</span>${notes}</div>`;
         }).join('');
     return `<div style="display:flex;align-items:flex-start;gap:24px;border-top:1px solid ${COLORS.border};padding-top:${Math.round(padding * 0.4)}px;margin-bottom:${Math.round(padding * 0.4)}px;">
       <span style="font-size:${fs.dayName}px;font-weight:700;color:${COLORS.muted};width:52px;flex-shrink:0;">${dayName}</span>
