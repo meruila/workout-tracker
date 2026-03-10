@@ -412,7 +412,7 @@ function buildExportCard(year, weekNum, width, height) {
   ].filter(Boolean).join(' · ') || 'No activities';
 
   card.innerHTML = `<div style="height:100%;display:flex;flex-direction:column;padding:${padding}px ${Math.round(padding*1.1)}px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
-    <div style="font-size:${fs.appName}px;font-weight:700;color:${COLORS.muted};letter-spacing:-0.3px;margin-bottom:6px;">Activity Tracker</div>
+    <div style="font-size:${fs.appName}px;font-weight:700;color:${COLORS.muted};letter-spacing:-0.3px;margin-bottom:6px;">My Workouts</div>
     <div style="font-size:${fs.weekLabel}px;font-weight:700;color:${COLORS.text};line-height:1.1;margin-bottom:${Math.round(padding*0.6)}px;">${wkLabel}</div>
     <div style="font-size:${fs.entry}px;color:${COLORS.muted};margin-bottom:${Math.round(padding*0.8)}px;">${total} activit${total!==1?'ies':'y'} · ${statsLine}</div>
     <div style="flex:1;overflow:hidden;">${dayRows}</div>
