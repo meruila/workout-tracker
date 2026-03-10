@@ -66,6 +66,10 @@ function storeRemove(id) {
   _save(_load().filter(e => e.id !== id));
 }
 
+function storeUpdate(id, patch) {
+  _save(_load().map(e => e.id === id ? { ...e, ...patch } : e));
+}
+
 // ── calendar.js ───────────────────────────────────────────
 const CAL_DAYS = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 const MONTHS = ['January','February','March','April','May','June',
@@ -121,6 +125,7 @@ function showPopover(cell, dateStr, entries) {
           <div class="popover-type">${e.type}</div>
           ${e.notes ? `<div class="popover-notes">${e.notes}</div>` : ''}
         </div>
+        <button class="popover-edit" data-id="${e.id}" title="Edit notes">✎</button>
         <button class="popover-delete" data-id="${e.id}" title="Delete">✕</button>
       </div>`).join('');
 
@@ -157,6 +162,40 @@ function showPopover(cell, dateStr, entries) {
       storeRemove(btn.dataset.id);
       closePopover();
       renderCalendar();
+    });
+  });
+  calPopover.querySelectorAll('.popover-edit').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const id = btn.dataset.id;
+      const entryEl = calPopover.querySelector(`.popover-entry[data-id="${id}"]`);
+      const infoEl = entryEl.querySelector('.popover-entry-info');
+      const currentNotes = infoEl.querySelector('.popover-notes')?.textContent || '';
+
+      infoEl.innerHTML = `
+        <div class="popover-type">${entryEl.querySelector('.popover-type').textContent}</div>
+        <textarea class="popover-notes-input" rows="2">${currentNotes}</textarea>
+        <div class="popover-notes-actions">
+          <button class="popover-notes-save">Save</button>
+          <button class="popover-notes-cancel">Cancel</button>
+        </div>`;
+      btn.style.display = 'none';
+      entryEl.querySelector('.popover-delete').style.display = 'none';
+
+      const textarea = infoEl.querySelector('.popover-notes-input');
+      textarea.focus();
+      textarea.setSelectionRange(textarea.value.length, textarea.value.length);
+
+      infoEl.querySelector('.popover-notes-save').addEventListener('click', () => {
+        storeUpdate(id, { notes: textarea.value.trim() });
+        const savedCell = calActiveCell;
+        calActiveCell = null;
+        showPopover(savedCell, savedCell.dataset.date, getByDate(savedCell.dataset.date));
+      });
+      infoEl.querySelector('.popover-notes-cancel').addEventListener('click', () => {
+        const savedCell = calActiveCell;
+        calActiveCell = null;
+        showPopover(savedCell, savedCell.dataset.date, getByDate(savedCell.dataset.date));
+      });
     });
   });
 }
