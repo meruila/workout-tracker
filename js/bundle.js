@@ -395,7 +395,7 @@ function buildExportCard(year, weekNum, width, height) {
           return `<div style="font-size:${fs.entry}px;color:${COLORS.text};margin-bottom:4px;line-height:1.4;"><span style="font-weight:600;text-transform:capitalize;">${e.type}</span>${notes}</div>`;
         }).join('');
     return `<div style="display:flex;align-items:flex-start;gap:24px;border-top:1px solid ${COLORS.border};padding-top:${Math.round(padding * 0.4)}px;margin-bottom:${Math.round(padding * 0.4)}px;">
-      <span style="font-size:${fs.dayName}px;font-weight:700;color:${COLORS.muted};width:52px;flex-shrink:0;">${dayName}</span>
+      <span style="font-size:${fs.entry}px;font-weight:700;color:${COLORS.muted};width:52px;flex-shrink:0;line-height:1.4;">${dayName}</span>
       <div style="flex:1;min-width:0;">${entryLines}</div></div>`;
   }).join('');
 
