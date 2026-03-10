@@ -391,7 +391,7 @@ function buildExportCard(year, weekNum, width, height) {
     const entryLines = dayEntries.length === 0
       ? `<div style="font-size:${fs.entry}px;color:rgba(122,184,122,0.4);font-style:italic;">Rest</div>`
       : dayEntries.map(e => {
-          const notes = e.notes ? `<span style="color:${COLORS.muted};margin-left:8px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:600px;">— ${e.notes}</span>` : '';
+          const notes = e.notes ? `<span style="color:${COLORS.muted};margin-left:8px;">— ${e.notes}</span>` : '';
           return `<div style="display:flex;align-items:center;gap:10px;font-size:${fs.entry}px;color:${COLORS.text};margin-bottom:4px;">
             <span style="width:12px;height:12px;border-radius:50%;background:${expDotColor(e.type)};flex-shrink:0;display:inline-block;"></span>
             <span style="font-weight:600;text-transform:capitalize;">${e.type}</span>${notes}</div>`;
